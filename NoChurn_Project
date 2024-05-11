@@ -1,0 +1,327 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "authorship_tag": "ABX9TyNUDty0bZ8G5buPEKdxjS3/",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/pandreof/GooAluraNoChurn/blob/main/NoChurn_Project\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "bRcNMEMO0irU",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 694
+        },
+        "outputId": "b7a0e394-2788-4d1e-fee4-17a1237f8e68"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "**Introdução à Inteligência Artificial (IA)**\n",
+            "\n",
+            "* O que é IA e como funciona\n",
+            "* Diferentes tipos de IA (aprendizado de máquina, aprendizado profundo, aprendizado por reforço)\n",
+            "* Aplicações de IA em vários setores\n",
+            "\n",
+            "**Aprendizado de Máquina (ML)**\n",
+            "\n",
+            "* Tipos de algoritmos de ML (supervisionado, não supervisionado, reforço)\n",
+            "* Processo de treinamento e avaliação de modelos de ML\n",
+            "* Técnicas de pré-processamento e seleção de recursos\n",
+            "\n",
+            "**Aprendizado Profundo (DL)**\n",
+            "\n",
+            "* Redes neurais e como elas aprendem\n",
+            "* Arquiteturas de rede comuns (CNNs, RNNs, Transformers)\n",
+            "* Aplicações de DL em visão computacional, processamento de linguagem natural e muito mais\n",
+            "\n",
+            "**Processamento de Linguagem Natural (PNL)**\n",
+            "\n",
+            "* Fundamentos do PNL (tokenização, análise sintática, processamento semântico)\n",
+            "* Modelos de PNL para tarefas como classificação de texto, geração de linguagem e tradução automática\n",
+            "\n",
+            "**Visão Computacional (CV)**\n",
+            "\n",
+            "* Técnicas de processamento de imagens (filtragem, segmentação, reconhecimento de objetos)\n",
+            "* Algoritmos de CV para tarefas como detecção de objetos, reconhecimento facial e rastreamento de movimento\n",
+            "\n",
+            "**Aprendizado por Reforço (RL)**\n",
+            "\n",
+            "* Conceitos básicos de RL (estados, ações, recompensas)\n",
+            "* Algoritmos de RL para resolver problemas sequenciais e de tomada de decisão\n",
+            "* Aplicações de RL em jogos, robótica e otimização\n",
+            "\n",
+            "**Ética e Implicações Sociais da IA**\n",
+            "\n",
+            "* Preocupações éticas com IA (preconceito, privacidade, segurança)\n",
+            "* Implicações sociais da IA (automação, emprego, desigualdade)\n",
+            "* Diretrizes e regulamentações para o uso responsável da IA\n"
+          ]
+        }
+      ],
+      "source": [
+        "!pip install -q -U google-generativeai\n",
+        "\n",
+        "import google.generativeai as genai\n",
+        "\n",
+        "GOOGLE_API_KEY = \"AIzaSyAJycgGmhGli3r5AiFIU5h3qpGQP_0MT6U\"\n",
+        "genai.configure(api_key=GOOGLE_API_KEY)\n",
+        "\n",
+        "lgeneration_config = {\n",
+        "    \"candidate_count\" : 1,\n",
+        "    \"temperature\" : 0.5,\n",
+        "}\n",
+        "\n",
+        "lsafety_settings = {\n",
+        "    \"HARASSMENT\" : \"BLOCK_NONE\",\n",
+        "    \"HATE\" : \"BLOCK_NONE\",\n",
+        "    \"SEXUAL\" : \"BLOCK_NONE\",\n",
+        "    \"DANGEROUS\" : \"BLOCK_NONE\",\n",
+        "}\n",
+        "\n",
+        "model = genai.GenerativeModel(model_name=\"gemini-1.0-pro\",\n",
+        "                              generation_config=lgeneration_config,\n",
+        "                              safety_settings=lsafety_settings)\n",
+        "response=model.generate_content(\"Vamos aprender sobre AI com o Google. Pode dar sugestão do que iremos aprender ?\")\n",
+        "print(response.text)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "chat = model.start_chat(history=[])\n",
+        "lprompt = input(\"Esperando prompt: \")\n",
+        "\n",
+        "while lprompt != \"fim\":\n",
+        "  response = chat.send_message(lprompt)\n",
+        "  print(\"Resposta: \", response.text, \"\\n\")\n",
+        "  lprompt = input(\"Esperando prompt: \")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 139
+        },
+        "id": "PjnuXT-cE_Zq",
+        "outputId": "a2b1c5dc-d8f7-44a8-caa6-cf60c64a0ba6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Esperando prompt: qual capital sao paulo\n",
+            "Resposta:  São Paulo \n",
+            "\n",
+            "Esperando prompt: qual o maior predio\n",
+            "Resposta:  Burj Khalifa \n",
+            "\n",
+            "Esperando prompt: fim\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "chat"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dAyOmvwdKleZ",
+        "outputId": "b730c427-450a-4848-a6e8-040879ba06be"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "ChatSession(\n",
+              "    model=genai.GenerativeModel(\n",
+              "        model_name='models/gemini-1.0-pro',\n",
+              "        generation_config={'candidate_count': 1, 'temperature': 0.5},\n",
+              "        safety_settings={<HarmCategory.HARM_CATEGORY_HARASSMENT: 7>: <HarmBlockThreshold.BLOCK_NONE: 4>, <HarmCategory.HARM_CATEGORY_HATE_SPEECH: 8>: <HarmBlockThreshold.BLOCK_NONE: 4>, <HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: 9>: <HarmBlockThreshold.BLOCK_NONE: 4>, <HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: 10>: <HarmBlockThreshold.BLOCK_NONE: 4>},\n",
+              "        tools=None,\n",
+              "        system_instruction=None,\n",
+              "    ),\n",
+              "    history=[glm.Content({'parts': [{'text': 'qual capital sao paulo'}], 'role': 'user'}), glm.Content({'parts': [{'text': 'São Paulo'}], 'role': 'model'}), glm.Content({'parts': [{'text': 'qual o maior predio'}], 'role': 'user'}), glm.Content({'parts': [{'text': 'Burj Khalifa'}], 'role': 'model'})]\n",
+              ")"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 17
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "chat.history"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Qk-OfpymK-1V",
+        "outputId": "dcd3aac8-0b39-4717-f173-d3cce26fbe35"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[parts {\n",
+              "   text: \"qual capital sao paulo\"\n",
+              " }\n",
+              " role: \"user\",\n",
+              " parts {\n",
+              "   text: \"S\\303\\243o Paulo\"\n",
+              " }\n",
+              " role: \"model\",\n",
+              " parts {\n",
+              "   text: \"qual o maior predio\"\n",
+              " }\n",
+              " role: \"user\",\n",
+              " parts {\n",
+              "   text: \"Burj Khalifa\"\n",
+              " }\n",
+              " role: \"model\"]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 18
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Melhorando a visualização\n",
+        "# Código disponível em https://ai.google.dev/tutorials/python_quickstart#import_packages\n",
+        "\n",
+        "import textwrap\n",
+        "from IPython.display import display\n",
+        "from IPython.display import Markdown\n",
+        "\n",
+        "def to_markdown(text):\n",
+        "  text = text.replace(\"```\", \"  \")\n",
+        "  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))\n",
+        "\n",
+        "# Imprimindo o histórico\n",
+        "for message in chat.history:\n",
+        "  display(to_markdown(f\"**{message.role}**: {message.parts[0].text}\"))\n",
+        "  print('-------------------------------------------------------')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 268
+        },
+        "id": "IrBurwx0KYNf",
+        "outputId": "b3d9566b-454f-4e1b-fd92-66a9d663bc06"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Markdown object>"
+            ],
+            "text/markdown": "> **user**: qual capital sao paulo"
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-------------------------------------------------------\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Markdown object>"
+            ],
+            "text/markdown": "> **model**: São Paulo"
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-------------------------------------------------------\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Markdown object>"
+            ],
+            "text/markdown": "> **user**: qual o maior predio"
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-------------------------------------------------------\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<IPython.core.display.Markdown object>"
+            ],
+            "text/markdown": "> **model**: Burj Khalifa"
+          },
+          "metadata": {}
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-------------------------------------------------------\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
