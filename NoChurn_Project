@@ -90,7 +90,7 @@
         "\n",
         "import google.generativeai as genai\n",
         "\n",
-        "GOOGLE_API_KEY = \"AIzaSyAJycgGmhGli3r5AiFIU5h3qpGQP_0MT6U\"\n",
+        "GOOGLE_API_KEY = \"\"\n",
         "genai.configure(api_key=GOOGLE_API_KEY)\n",
         "\n",
         "lgeneration_config = {\n",
