@@ -1,6 +1,6 @@
 # GooAluraNoChurn
 
-AI project focus on stop churn on Telecom Fale Bem Company 
+ 
 Arquivo Projeto Python chatBot_Churn.ipynb
 
 Aplicação com o objetivo de retenção de clientes de telefonia para evitar processo de churn(migração de clientes entre operadoras)
