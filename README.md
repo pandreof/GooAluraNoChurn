@@ -4,19 +4,19 @@ AI project focus on stop churn on Telecom Fale Bem Company
 Aplicação com o objetivo de retenção de clientes de telefonia para evitar processo de churn(migração de clientes entre operadoras)
 Construção de Chat Bot utilizando Gemini 1.5 e aplicação Salesforce desenvolvida em ambiente trial
 
-Bibliotecas utilizadas
+# Bibliotecas utilizadas
 google-generativeai
 simple-salesforce
-import pandas as pd
+pandas
 
-Chaves de conexões utilizadas
+# Chaves de conexões utilizadas
 GOOGLE_API_KEY = ""
 SFDC_INTEGRATION_USER= "ptandreo-lgxk@force.com"
 SFDC_INTEGRATION_PASS= "@1Candidato"
 SFDC_INTEGRATION_TOKEN= "xUvUe9D6j7PDAC05sYYtfuFIf" #Instância nova criada em Salesforce, sem dados sensíveis e expira em 30 dias
 #cpf = "972.237.264-58" #número fake de cpf para teste com dados e probabilidade de churn
 
-Processos de Negócio
+# Processos de Negócio
 class ChurnCalculator:
     Critério para definição de Churn
         Busca dados do cliente no Salesforce, incluindo Cases, data do primeiro contrato
