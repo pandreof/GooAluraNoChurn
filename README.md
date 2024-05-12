@@ -18,12 +18,9 @@ SFDC_INTEGRATION_TOKEN= "xUvUe9D6j7PDAC05sYYtfuFIf" #Instância nova criada em S
 
 Processos de Negócio
 class ChurnCalculator:
-    def buscar_dados_cliente(cpf, username, password, security_token, domain='login'):
-        """
+    Critério para definição de Churn
         Busca dados do cliente no Salesforce, incluindo Cases, data do primeiro contrato
-        e média das faturas.
-
-        
+        e média das faturas.        
         # Calcula a data de 30 dias atrás
         # Busca Cases
         # Busca data do primeiro contrato
@@ -36,7 +33,6 @@ class ChurnCalculator:
         quantidade de Cases, tempo de relacionamento e média das faturas.
 
         # Calcula tempo de relacionamento em meses
-    
         # Define pesos para cada fator (ajuste conforme necessário)
         peso_cases = 0.5
         peso_tempo_relacionamento = 0.3
@@ -56,18 +52,8 @@ class ChurnCalculator:
 
     
 
-# Obtém os dados do cliente
-cliente, cases, data_primeiro_contrato, media_faturas = ChurnCalculator.buscar_dados_cliente(cpf, SFDC_INTEGRATION_USER, SFDC_INTEGRATION_PASS, SFDC_INTEGRATION_TOKEN)
-
 # Interação com o modelo de linguagem com base no risco de churn
 if risco_churn > 0:
     prompt_churn_risk = f"O cliente {nome_cliente} dado falhas de nossos produtos ou atendimento esta em risco de churn. Seja criativo em uma resposta ou promoção de produtos de linha móvel para uma saudação e rete-lo, em nome da Empresa Fale Bem Telefonia."
     response = chat.send_message(prompt_churn_risk)
-
-# Loop de conversa com o usuário
-while prompt.lower() != "fim":
-    response = chat.send_message(prompt)
-    print("Resposta do modelo:", response.text, "\n")
-    prompt = input("Digite algo: ")
-
 
