@@ -1,2 +1,2 @@
 # GooAluraNoChurn
-AI project focun on stop churn on Telecom X Company
+AI project focus on stop churn on Telecom Fale Bem Company
